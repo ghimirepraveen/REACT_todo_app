@@ -1,4 +1,5 @@
 import {
+  Link,
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
@@ -41,10 +42,20 @@ const Viewpage = () => {
           }}
         >
           {getData}
-          <button style={{ background: "red" }} onClick={deleteTodo}>
-            Delete TO-Do
-          </button>
         </div>
+        {localStorage.getItem("loggedIn") ? (
+          <>
+            <button style={{ background: "red" }} onClick={deleteTodo}>
+              Delete TO-Do
+            </button>
+          </>
+        ) : (
+          <>
+            <p>
+              Login to see more option<Link to="/login">Login Now</Link>{" "}
+            </p>
+          </>
+        )}
       </div>
     </>
   );
