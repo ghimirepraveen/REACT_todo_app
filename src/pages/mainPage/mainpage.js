@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Navbar from "../Navbar";
 import { FaEye } from "react-icons/fa";
 const Mainpage = () => {
@@ -10,11 +11,13 @@ const Mainpage = () => {
       <Navbar></Navbar>
       <div className="todo_container">
         <h3>Your to-do</h3>
-        {getTodo.map((el) => (
+        {getTodo.map((el, index) => (
           <>
             <div className="single_todo">
               {el}
-              <FaEye />
+              <Link to={`/view/${index}`}>
+                <FaEye size={"20px"} />
+              </Link>
             </div>
           </>
         ))}
