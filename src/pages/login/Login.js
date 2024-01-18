@@ -1,11 +1,9 @@
-import { Route } from "react-router-dom";
 import Navbar from "../Navbar";
-import { Link } from "react-router-dom";
-import Showpage from "../showpage/Showpage";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, Route, useHistory } from "react-router-dom";
 
 const Login = () => {
   const history = useHistory();
+
   return (
     <>
       <Navbar />
@@ -13,25 +11,38 @@ const Login = () => {
       <div className="todo_container">
         {localStorage.getItem("loggedIn") ? (
           <>
-            <div>
-              <h3>You are already loggedin!!</h3>
-            </div>
+            You are already logged in!{" "}
+            <b
+              onClick={() => {
+                localStorage.removeItem("loggedIn");
+                history.push("/");
+              }}
+              style={{ color: "red", cursor: "pointer" }}
+            >
+              Logout
+            </b>
           </>
         ) : (
           <>
             <button
               onClick={() => {
-                alert("You sucessifully loggedin!!");
+                alert("You are successfully logged in!");
                 history.replace("/");
                 localStorage.setItem("loggedIn", true);
               }}
             >
-              Login
+              Login!
             </button>
             <br />
+            <br />
             <Link to="/login/showInfo">Nested Route | Show Info</Link>
+            <br /> <br />
+            <br />
+            {/* Nested routing */}
             <Route path="/login/showInfo">
-              <Showpage></Showpage>
+              <div>
+                This is dummy login and doesnot communicate with server.
+              </div>
             </Route>
           </>
         )}
@@ -39,4 +50,5 @@ const Login = () => {
     </>
   );
 };
+
 export default Login;

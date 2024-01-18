@@ -16,15 +16,12 @@ const Routes = () => {
           <Route path="/" exact>
             <Redirect to="/home"></Redirect>
           </Route>
-          <Route path="/login" component={Login} exact />
+
           <Route path="/home" component={Mainpage} />
           <Route path="/add" exact>
-            {localStorage.getItem("loggedIn") ? (
-              <AddToDo />
-            ) : (
-              <Redirect to="/login" />
-            )}
+            <AddToDo />
           </Route>
+          <Route path="/login" component={Login} />
           <Route path="/view/:id" component={Viewpage} exact />
           <Route path="*">
             <Notfound />
